@@ -3,14 +3,11 @@
 namespace App\Services\Admin\Contact;
 
 use App\Models\Contact;
-use App\Traits\FirebaseDatabase;
 use Kreait\Firebase\Contract\Database;
 use App\Services\Admin\Contact\ContactInterface;
 
 class ContactService implements ContactInterface
 {
-    use FirebaseDatabase;
-
     protected $model;
 
     /**
@@ -18,7 +15,6 @@ class ContactService implements ContactInterface
      */
     public function __construct(Contact $model, Database $database)
     {
-        // $this->model = $this->connect($model->getTable());
         $this->model = $database->getReference($model->getTable());
     }
 
